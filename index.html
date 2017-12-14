@@ -2,32 +2,96 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>WO Xmas Messages</title>
 
-	<script>
+  <style>
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-	</script>
+    
+    body {
+      padding: 20px;
+      font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+      background-color: #000;
+    }
+
+    h1, p {
+      color: #FFD700;
+    }
+
+    h1 {
+      margin: 30px 0;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+
+    form { 
+      padding: 0px;  
+      margin:0;
+      width: 100%;
+    }
+
+    form input { 
+      -webkit-appearance: none;
+      border: 1px white solid; 
+      background-color: #121212;
+      color: #FFD700;
+      padding: 10px; 
+      width: 100%; 
+      margin-right: .5%; 
+      margin-bottom: 20px;
+    }
+
+    form button { width: 100%; 
+      background: #FFD700; 
+      border: none; 
+      padding: 10px; 
+    }
 
 
-	<style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-    </style>
+    #confirm {
 
+  
+    width: 100%;
+    height: 40px;
+    background-color: "FFD700";
+    color: "green";
+    margin: 20px 0;
+    display: none;
+    }
+  
+      .btn {
+      display: inline-block;
+      background: #44b403;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #fff;
+      padding: 8px 8px; 
+      text-align: center; 
+    }
+
+    a {
+      color: #00B7FF;
+    }
+
+
+
+  </style>
 </head>
 <body>
-<ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
 
 
+    <div id="container">
+      
+      <h1>WO XMAS MESSAGES</h1>
+      <p>Please use the field below to post a message to the screen.  Messages are not stored...but remember...Xander is watching.  :o)  Andy.:x</p>
+      <form action="">
+        <input id="m" autocomplete="off" maxlength="140" />
+        <button id="submit">Send Message to Screen</button>
+      </form>
+      <p id="confirm" class="btn">Roger wilco!  Message recieved...watch the screen ;-)</p>
+    </div>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
@@ -38,8 +102,29 @@
         return false;
       });
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        // do something when the message is recieved by the socket - i.e. write a welcome message.
+        //restyle button
+        buttonConfirm();
+        setTimeout(buttonRevert, 3000);
+        //set a timeout
+        //revert style
+
+
       });
+
+
+
+      function buttonConfirm()
+      {
+        $('#submit').hide();
+        $('#confirm').show();
+      }
+
+      function buttonRevert()
+      {
+        $('#submit').show();
+        $('#confirm').hide();
+      }
     </script>
 
 </body>
