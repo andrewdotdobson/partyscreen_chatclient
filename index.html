@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>WO Xmas Messages</title>
   <link href="https://fonts.googleapis.com/css?family=Mountains+of+Christmas" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Averia+Sans+Libre" rel="stylesheet">
   <style>
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,7 +12,8 @@
     
     body {
       padding: 20px;
-      font-family: 'Mountains of Christmas', cursive;
+      /*font-family: 'Mountains of Christmas', cursive;*/
+      font-family: 'Averia Sans Libre', cursive;
       font-size: 16px;
       background-color: #000;
     }
@@ -102,13 +104,14 @@
       $('form').submit(function(){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
+        buttonConfirm();
+        setTimeout(buttonRevert, 3000);
         return false;
       });
       socket.on('chat message', function(msg){
         // do something when the message is recieved by the socket - i.e. write a welcome message.
         //restyle button
-        buttonConfirm();
-        setTimeout(buttonRevert, 3000);
+        
         //set a timeout
         //revert style
 
